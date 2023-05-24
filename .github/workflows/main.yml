@@ -22,7 +22,7 @@ jobs:
         with:
           heroku_email: iateriam@mail.ru
           heroku_api_key: ${{env.HEROKU_API_KEY}}
-          heroku_app_name: iateriam@mail.ru
+          heroku_app_name: ai-store-test-frontend
           branch: HEAD
           useforce: false
           dynamicFiles: false
