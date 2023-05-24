@@ -1,19 +1,16 @@
-name: Deploy
+
+name: Push Container to Heroku
 env:
-  API_key: "0feefea8-2afb-444f-816d-bd7d55a7ce17"
-on:
-  push:
-    branches:
-      - main
+  HEROKU_API_KEY: "0feefea8-2afb-444f-816d-bd7d55a7ce17"
+  
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.14 # This is the action
-        with:
-          heroku_api_key: ${{env.API_key}}
-          heroku_app_name: "ai-store-test-frontend" #Must be unique in Heroku
-          heroku_email: "iateriam@mail.ru"
-          buildpack: "https://github.com/HashNuke/heroku-buildpack-elixir.git"
+    - uses: actions/checkout@v1
+    - name: Login to Heroku Container registry
+      env: 
+        HEROKU_API_KEY: ${{ env.HEROKU_API_KEY }}
+      run: heroku container:login 
