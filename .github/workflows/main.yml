@@ -2,6 +2,7 @@
 name: Push Container to Heroku
 env:
   HEROKU_API_KEY: "0feefea8-2afb-444f-816d-bd7d55a7ce17"
+  HEROKU_APP_STAGING : "ai-store-test-frontend"
   
 on: [push]
 
@@ -10,7 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Login to Heroku Container registry
-      env: 
-        HEROKU_API_KEY: ${{ env.HEROKU_API_KEY }}
-      run: heroku container:login 
+    - name: Push to Heroku
+      run: git push -f https://heroku:${{ env.HEROKU_API_KEY }}@git.heroku.com/${{ env.HEROKU_APP_STAGING }}.git origin/master:master
