@@ -21,7 +21,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_email: iateriam@mail.ru
-          heroku_api_key: ${{end.HEROKU_API_KEY}}
+          heroku_api_key: ${{env.HEROKU_API_KEY}}
           heroku_app_name: iateriam@mail.ru
           branch: HEAD
           useforce: false
