@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Updating Ubuntu system and Heroku
         env: 
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY }}
         run: sudo apt update && curl https://cli-assets.heroku.com/install-ubuntu.sh | sh && sudo apt install neofetch 
       - name: Checking the info
         run: neofetch
