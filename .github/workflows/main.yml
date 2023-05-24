@@ -1,7 +1,7 @@
 
 name: Push Container to Heroku
 env:
-  HEROKU_API_KEY: "0feefea8-2afb-444f-816d-bd7d55a7ce17"
+  HEROKU_API_KEY: c1b7d40a-afc4-410f-adfb-a59a7dd341a7
   HEROKU_APP_STAGING : "ai-store-test-frontend"
   
 on: [push]
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Updating Ubuntu system and Heroku
         env: 
-          HEROKU_API_KEY: ${{ env.HEROKU_API_KEY }}
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY }}
         run: sudo apt update && curl https://cli-assets.heroku.com/install-ubuntu.sh | sh && sudo apt install neofetch 
       - name: Checking the info
         run: neofetch
@@ -21,7 +21,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_email: iateriam@mail.ru
-          heroku_api_key: ${{env.HEROKU_API_KEY}}
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ai-store-test-frontend
           branch: HEAD
           useforce: false
