@@ -8,8 +8,21 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v1
-    - name: Push to Heroku
-      run: git push -f https://heroku:${{ env.HEROKU_API_KEY }}@git.heroku.com/${{ env.HEROKU_APP_STAGING }}.git origin main
+      - uses: actions/checkout@v2
+      - name: Updating Ubuntu system and Heroku
+        env: 
+          HEROKU_API_KEY: ${{ env.HEROKU_API_KEY }}
+        run: sudo apt update && sudo apt install heroku neofetch
+      - name: Checking the info
+        run: neofetch
+
+      - uses: akhileshns/heroku-deploy@v3.8.8
+        with:
+          heroku_email: iateriam@mail.ru
+          heroku_api_key: ${{end.HEROKU_API_KEY}}
+          heroku_app_name: iateriam@mail.ru
+          branch: HEAD
+          useforce: false
+          dynamicFiles: false
