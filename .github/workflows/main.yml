@@ -4,7 +4,7 @@ env:
   HEROKU_API_KEY: c1b7d40a-afc4-410f-adfb-a59a7dd341a7
   HEROKU_APP_STAGING : "ai-store-test-frontend"
   
-on: [push]
+
 
 jobs:
   build:
