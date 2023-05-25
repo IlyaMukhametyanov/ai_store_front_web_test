@@ -1,26 +1,14 @@
+name: Node.js CI/CD ## <-- it’s not just CI anymore
 
-name: Push Container to Heroku
-env:
-  HEROKU_API_KEY: c1b7d40a-afc4-410f-adfb-a59a7dd341a7
-  HEROKU_APP_STAGING : "ai-store-test-frontend"
-  
-
-
+## <-- don’t change anything in this section
+on: [push]
 jobs:
-  build:
-    runs-on: ubuntu-20.04
+  deploy: ## <-- this is the new stuff
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Updating Ubuntu system and Heroku
-        env: 
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY }}
-        run: sudo apt update && curl https://cli-assets.heroku.com/install-ubuntu.sh | sh && sudo apt install neofetch 
-      - name: Checking the info
-        run: neofetch
-
-      - uses: akhileshns/heroku-deploy@v3.8.8
+      - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_email: "iateriam@mail.ru"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "ai-store-test-frontend"
-
+          heroku_email: "iateriam@mail.ru"
